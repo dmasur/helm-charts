@@ -47,6 +47,7 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           {{- if or .Values.secret_key_base.secret .Values.secret_key_base.secretKeyRef }}
           env:
+            {{- include ".Values.env" . | nindent 12 }}
             - name: SECRET_KEY_BASE
               valueFrom:
                 secretKeyRef:
